@@ -17,7 +17,7 @@ import {
 import { MadrasahLogo } from '../components/MadrasahLogo';
 import { NotificationBell } from '../components/NotificationBell';
 import { PanduanModal } from '../components/PanduanModal';
-import { MADRASAH_INFO } from '../data/demoData';
+import { MADRASAH_INFO } from '../config/madrasah';
 import type { AdminRoute, AuthUser, NotificationItem } from '../types';
 
 interface AdminLayoutProps {

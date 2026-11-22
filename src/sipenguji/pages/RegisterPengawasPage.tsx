@@ -10,7 +10,7 @@ import {
   UserCheck,
 } from 'lucide-react';
 import { MadrasahLogo } from '../components/MadrasahLogo';
-import { MADRASAH_INFO } from '../data/demoData';
+import { MADRASAH_INFO } from '../config/madrasah';
 import { ApiError, sipengujiApi } from '../services/api';
 import type { AuthContextResponse, SaumSearchCandidate } from '../types';
 

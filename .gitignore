@@ -8,6 +8,6 @@ coverage/
 !.env.example
 !.env.staging.example
 !.env.production.example
-data/
-storage/
-backups/
+/data/
+/storage/
+/backups/

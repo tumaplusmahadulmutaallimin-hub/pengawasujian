@@ -1,7 +1,7 @@
 import { FormEvent, useState } from 'react';
 import { AlertCircle, Eye, EyeOff, LogIn, ShieldCheck, Smartphone, UserPlus } from 'lucide-react';
 import { MadrasahLogo } from '../components/MadrasahLogo';
-import { MADRASAH_INFO } from '../data/demoData';
+import { MADRASAH_INFO } from '../config/madrasah';
 import { ApiError, sipengujiApi } from '../services/api';
 import type { AuthContextResponse } from '../types';
 
