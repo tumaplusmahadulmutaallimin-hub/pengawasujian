@@ -1,0 +1,333 @@
+{
+  "sourceSystem": "SAUM_STAGING_SANDBOX_READ_ONLY",
+  "generatedAt": "2026-11-22T02:31:42.707Z",
+  "supervisors": [
+    {
+      "id": "sup_stg_1",
+      "nama": "Ahmad Fauzi, S.Pd.",
+      "nip": "198405122010011001",
+      "asalMadrasah": "MAN 1 Uji Staging",
+      "noHp": "081200001001",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "sup_stg_2",
+      "nama": "Siti Aminah, M.Pd.",
+      "nip": "198709212012012002",
+      "asalMadrasah": "MAN 1 Uji Staging",
+      "noHp": "081200001002",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "sup_stg_3",
+      "nama": "Budi Santoso, S.Ag.",
+      "nip": "198903152014021003",
+      "asalMadrasah": "MAN 2 Uji Staging",
+      "noHp": "081200001003",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "sup_stg_4",
+      "nama": "Nurul Hidayah, S.Si.",
+      "nip": "199111082019032004",
+      "asalMadrasah": "MAN 2 Uji Staging",
+      "noHp": "081200001004",
+      "status": "ACTIVE"
+    }
+  ],
+  "subjects": [
+    {
+      "id": "mapel_stg_1",
+      "kodeMapel": "MTK-12",
+      "namaMapel": "Matematika Wajib"
+    },
+    {
+      "id": "mapel_stg_2",
+      "kodeMapel": "BIN-12",
+      "namaMapel": "Bahasa Indonesia"
+    },
+    {
+      "id": "mapel_stg_3",
+      "kodeMapel": "FQH-12",
+      "namaMapel": "Fikih"
+    }
+  ],
+  "rooms": [
+    {
+      "id": "room_stg_1",
+      "kodeRuang": "R01",
+      "namaRuang": "Ruang 01 · Lab Komputer A",
+      "kapasitas": 30,
+      "lokasi": "Gedung Utama Lt. 1"
+    },
+    {
+      "id": "room_stg_2",
+      "kodeRuang": "R02",
+      "namaRuang": "Ruang 02 · Lab Komputer B",
+      "kapasitas": 30,
+      "lokasi": "Gedung Utama Lt. 1"
+    },
+    {
+      "id": "room_stg_3",
+      "kodeRuang": "R03",
+      "namaRuang": "Ruang 03 · Kelas XII-A",
+      "kapasitas": 30,
+      "lokasi": "Gedung Timur Lt. 2"
+    }
+  ],
+  "schedules": [
+    {
+      "id": "sch_stg_past",
+      "mapelId": "mapel_stg_3",
+      "tanggal": "2026-11-21",
+      "hari": "Sabtu",
+      "sesi": "Sesi 1",
+      "waktuMulai": "07:30",
+      "waktuSelesai": "09:30",
+      "ruangIds": [
+        "room_stg_1"
+      ]
+    },
+    {
+      "id": "sch_stg_today_1",
+      "mapelId": "mapel_stg_1",
+      "tanggal": "2026-11-22",
+      "hari": "Minggu",
+      "sesi": "Sesi 1",
+      "waktuMulai": "07:30",
+      "waktuSelesai": "09:30",
+      "ruangIds": [
+        "room_stg_1",
+        "room_stg_3"
+      ]
+    },
+    {
+      "id": "sch_stg_tomorrow",
+      "mapelId": "mapel_stg_2",
+      "tanggal": "2026-11-23",
+      "hari": "Senin",
+      "sesi": "Sesi 1",
+      "waktuMulai": "07:30",
+      "waktuSelesai": "09:30",
+      "ruangIds": [
+        "room_stg_2"
+      ]
+    }
+  ],
+  "assignments": [
+    {
+      "id": "asg_stg_past",
+      "scheduleId": "sch_stg_past",
+      "roomId": "room_stg_1",
+      "sesi": "Sesi 1",
+      "pengawas1Id": "sup_stg_1",
+      "pengawas2Id": null
+    },
+    {
+      "id": "asg_stg_today_r1",
+      "scheduleId": "sch_stg_today_1",
+      "roomId": "room_stg_1",
+      "sesi": "Sesi 1",
+      "pengawas1Id": "sup_stg_1",
+      "pengawas2Id": "sup_stg_2"
+    },
+    {
+      "id": "asg_stg_today_r3",
+      "scheduleId": "sch_stg_today_1",
+      "roomId": "room_stg_3",
+      "sesi": "Sesi 1",
+      "pengawas1Id": "sup_stg_3",
+      "pengawas2Id": null
+    },
+    {
+      "id": "asg_stg_tomorrow_r2",
+      "scheduleId": "sch_stg_tomorrow",
+      "roomId": "room_stg_2",
+      "sesi": "Sesi 1",
+      "pengawas1Id": "sup_stg_1",
+      "pengawas2Id": "sup_stg_2"
+    }
+  ],
+  "students": [
+    {
+      "id": "stu_stg_r1_1",
+      "nis": "260101",
+      "nisn": "00881001",
+      "nama": "Peserta Uji R01 #1",
+      "kelas": "XII IPA 1",
+      "nomorPeserta": "STG-R01-001",
+      "sesi": "Sesi 1",
+      "roomId": "room_stg_1"
+    },
+    {
+      "id": "stu_stg_r1_2",
+      "nis": "260102",
+      "nisn": "00881002",
+      "nama": "Peserta Uji R01 #2",
+      "kelas": "XII IPA 1",
+      "nomorPeserta": "STG-R01-002",
+      "sesi": "Sesi 1",
+      "roomId": "room_stg_1"
+    },
+    {
+      "id": "stu_stg_r1_3",
+      "nis": "260103",
+      "nisn": "00881003",
+      "nama": "Peserta Uji R01 #3",
+      "kelas": "XII IPA 1",
+      "nomorPeserta": "STG-R01-003",
+      "sesi": "Sesi 1",
+      "roomId": "room_stg_1"
+    },
+    {
+      "id": "stu_stg_r1_4",
+      "nis": "260104",
+      "nisn": "00881004",
+      "nama": "Peserta Uji R01 #4",
+      "kelas": "XII IPA 1",
+      "nomorPeserta": "STG-R01-004",
+      "sesi": "Sesi 1",
+      "roomId": "room_stg_1"
+    },
+    {
+      "id": "stu_stg_r1_5",
+      "nis": "260105",
+      "nisn": "00881005",
+      "nama": "Peserta Uji R01 #5",
+      "kelas": "XII IPA 1",
+      "nomorPeserta": "STG-R01-005",
+      "sesi": "Sesi 1",
+      "roomId": "room_stg_1"
+    },
+    {
+      "id": "stu_stg_r1_6",
+      "nis": "260106",
+      "nisn": "00881006",
+      "nama": "Peserta Uji R01 #6",
+      "kelas": "XII IPA 1",
+      "nomorPeserta": "STG-R01-006",
+      "sesi": "Sesi 1",
+      "roomId": "room_stg_1"
+    },
+    {
+      "id": "stu_stg_r2_1",
+      "nis": "260201",
+      "nisn": "00882001",
+      "nama": "Peserta Uji R02 #1",
+      "kelas": "XII IPA 2",
+      "nomorPeserta": "STG-R02-001",
+      "sesi": "Sesi 1",
+      "roomId": "room_stg_2"
+    },
+    {
+      "id": "stu_stg_r2_2",
+      "nis": "260202",
+      "nisn": "00882002",
+      "nama": "Peserta Uji R02 #2",
+      "kelas": "XII IPA 2",
+      "nomorPeserta": "STG-R02-002",
+      "sesi": "Sesi 1",
+      "roomId": "room_stg_2"
+    },
+    {
+      "id": "stu_stg_r2_3",
+      "nis": "260203",
+      "nisn": "00882003",
+      "nama": "Peserta Uji R02 #3",
+      "kelas": "XII IPA 2",
+      "nomorPeserta": "STG-R02-003",
+      "sesi": "Sesi 1",
+      "roomId": "room_stg_2"
+    },
+    {
+      "id": "stu_stg_r2_4",
+      "nis": "260204",
+      "nisn": "00882004",
+      "nama": "Peserta Uji R02 #4",
+      "kelas": "XII IPA 2",
+      "nomorPeserta": "STG-R02-004",
+      "sesi": "Sesi 1",
+      "roomId": "room_stg_2"
+    },
+    {
+      "id": "stu_stg_r2_5",
+      "nis": "260205",
+      "nisn": "00882005",
+      "nama": "Peserta Uji R02 #5",
+      "kelas": "XII IPA 2",
+      "nomorPeserta": "STG-R02-005",
+      "sesi": "Sesi 1",
+      "roomId": "room_stg_2"
+    },
+    {
+      "id": "stu_stg_r2_6",
+      "nis": "260206",
+      "nisn": "00882006",
+      "nama": "Peserta Uji R02 #6",
+      "kelas": "XII IPA 2",
+      "nomorPeserta": "STG-R02-006",
+      "sesi": "Sesi 1",
+      "roomId": "room_stg_2"
+    },
+    {
+      "id": "stu_stg_r3_1",
+      "nis": "260301",
+      "nisn": "00883001",
+      "nama": "Peserta Uji R03 #1",
+      "kelas": "XII IPS 1",
+      "nomorPeserta": "STG-R03-001",
+      "sesi": "Sesi 1",
+      "roomId": "room_stg_3"
+    },
+    {
+      "id": "stu_stg_r3_2",
+      "nis": "260302",
+      "nisn": "00883002",
+      "nama": "Peserta Uji R03 #2",
+      "kelas": "XII IPS 1",
+      "nomorPeserta": "STG-R03-002",
+      "sesi": "Sesi 1",
+      "roomId": "room_stg_3"
+    },
+    {
+      "id": "stu_stg_r3_3",
+      "nis": "260303",
+      "nisn": "00883003",
+      "nama": "Peserta Uji R03 #3",
+      "kelas": "XII IPS 1",
+      "nomorPeserta": "STG-R03-003",
+      "sesi": "Sesi 1",
+      "roomId": "room_stg_3"
+    },
+    {
+      "id": "stu_stg_r3_4",
+      "nis": "260304",
+      "nisn": "00883004",
+      "nama": "Peserta Uji R03 #4",
+      "kelas": "XII IPS 1",
+      "nomorPeserta": "STG-R03-004",
+      "sesi": "Sesi 1",
+      "roomId": "room_stg_3"
+    },
+    {
+      "id": "stu_stg_r3_5",
+      "nis": "260305",
+      "nisn": "00883005",
+      "nama": "Peserta Uji R03 #5",
+      "kelas": "XII IPS 1",
+      "nomorPeserta": "STG-R03-005",
+      "sesi": "Sesi 1",
+      "roomId": "room_stg_3"
+    },
+    {
+      "id": "stu_stg_r3_6",
+      "nis": "260306",
+      "nisn": "00883006",
+      "nama": "Peserta Uji R03 #6",
+      "kelas": "XII IPS 1",
+      "nomorPeserta": "STG-R03-006",
+      "sesi": "Sesi 1",
+      "roomId": "room_stg_3"
+    }
+  ]
+}
