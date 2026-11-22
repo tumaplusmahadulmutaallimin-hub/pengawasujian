@@ -1,5 +1,6 @@
 import './server/utils/loadEnv.ts';
 import fs from 'node:fs';
+import http from 'node:http';
 import path from 'node:path';
 import cookieParser from 'cookie-parser';
 import express, { type NextFunction, type Request, type Response } from 'express';
@@ -15,9 +16,21 @@ import { profileRouter } from './server/routes/profile.ts';
 import { extractClientIp, recordAuditLog } from './server/utils/audit.ts';
 import { getAppEnvironment } from './server/utils/loadEnv.ts';
 
+function resolveListenPort(): number {
+  const portFlagIndex = process.argv.indexOf('--port');
+  if (portFlagIndex !== -1 && process.argv[portFlagIndex + 1]) {
+    const cliPort = Number(process.argv[portFlagIndex + 1]);
+    if (Number.isFinite(cliPort) && cliPort > 0) return cliPort;
+  }
+  const envPort = Number(process.env.PORT);
+  if (Number.isFinite(envPort) && envPort > 0) return envPort;
+  return 3000;
+}
+
 async function startServer() {
   const app = express();
-  const port = Number(process.env.PORT) || 3000;
+  const httpServer = http.createServer(app);
+  const port = resolveListenPort();
   const isProd = process.env.NODE_ENV === 'production';
 
   app.set('trust proxy', 1);
@@ -108,7 +121,11 @@ async function startServer() {
 
   if (!isProd) {
     const vite = await createViteServer({
-      server: { middlewareMode: true },
+      server: {
+        middlewareMode: true,
+        allowedHosts: true,
+        ws: process.env.DISABLE_HMR === 'true' ? false : { server: httpServer },
+      },
       appType: 'spa',
     });
     app.use(vite.middlewares);
@@ -137,7 +154,7 @@ async function startServer() {
 
   startSaumPeriodicScheduler();
 
-  app.listen(port, '0.0.0.0', () => {
+  httpServer.listen(port, '0.0.0.0', () => {
     console.log(`SIPENGUJI server running on http://0.0.0.0:${port}`);
   });
 }

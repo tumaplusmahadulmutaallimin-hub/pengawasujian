@@ -178,7 +178,7 @@ export function AdminLayout({
       )}
 
       {/* Main Content */}
-      <div className="flex-1 lg:pl-[260px] flex flex-col min-w-0">
+      <div className="flex-1 lg:pl-[260px] flex flex-col min-w-0 overflow-x-hidden">
         <header className="sticky top-0 z-20 h-16 bg-white/95 backdrop-blur-sm border-b border-slate-200 px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
           <div className="flex items-center gap-3 min-w-0">
             <button

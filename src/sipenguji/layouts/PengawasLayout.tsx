@@ -194,7 +194,7 @@ export function PengawasLayout({
       )}
 
       {/* Main Column */}
-      <div className="flex-1 lg:pl-[250px] flex flex-col min-w-0">
+      <div className="flex-1 lg:pl-[250px] flex flex-col min-w-0 overflow-x-hidden">
         <header className="sticky top-0 z-20 h-[52px] lg:h-16 bg-white/95 backdrop-blur-md border-b border-slate-200 px-3 sm:px-6 lg:px-8 flex items-center justify-between gap-3">
           <div className="flex items-center gap-2 min-w-0">
             <button

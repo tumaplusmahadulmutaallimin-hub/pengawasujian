@@ -1,5 +1,14 @@
 import { FormEvent, useState } from 'react';
-import { AlertCircle, Eye, EyeOff, LogIn, ShieldCheck, Smartphone, UserPlus } from 'lucide-react';
+import {
+  AlertCircle,
+  CheckCircle2,
+  Eye,
+  EyeOff,
+  LogIn,
+  ShieldCheck,
+  Smartphone,
+  UserPlus,
+} from 'lucide-react';
 import { MadrasahLogo } from '../components/MadrasahLogo';
 import { MADRASAH_INFO } from '../config/madrasah';
 import { ApiError, sipengujiApi } from '../services/api';
@@ -27,12 +36,23 @@ export function LoginPage({
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+
+  const pwdHasMinLen = password.length >= 10;
+  const pwdHasUpper = /[A-Z]/.test(password);
+  const pwdHasLower = /[a-z]/.test(password);
+  const pwdHasDigitOrSymbol = /[0-9!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(password);
+  const pwdMatchesConfirm = Boolean(password && confirmPassword && password === confirmPassword);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     const trimmedUser = username.trim();
 
     if (needsAdminSetup) {
+      if (!trimmedUser || !password || !confirmPassword) {
+        setErrorMessage('Username Admin, password, dan konfirmasi password wajib diisi.');
+        return;
+      }
       const normalizedUser = trimmedUser.toLowerCase();
       if (!/^[a-z0-9._-]{4,32}$/.test(normalizedUser)) {
         setErrorMessage(
@@ -40,7 +60,7 @@ export function LoginPage({
         );
         return;
       }
-      if (password.length < 10 || !/[A-Z]/.test(password) || !/[a-z]/.test(password) || !/[0-9!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(password)) {
+      if (!pwdHasMinLen || !pwdHasUpper || !pwdHasLower || !pwdHasDigitOrSymbol) {
         setErrorMessage(
           'Password Admin minimal 10 karakter dengan kombinasi huruf besar, huruf kecil, dan angka atau simbol.'
         );
@@ -53,12 +73,14 @@ export function LoginPage({
 
       setLoading(true);
       setErrorMessage(null);
+      setSuccessMessage(null);
       try {
         const res = await sipengujiApi.setupInitialAdmin({
           username: normalizedUser,
           password,
           email: email.trim() || undefined,
         });
+        setSuccessMessage(res.message || 'Akun Admin awal berhasil dikonfigurasi. Mengalihkan ke Dashboard...');
         onLoginSuccess(res.auth);
       } catch (err) {
         if (err instanceof ApiError) {
@@ -189,6 +211,16 @@ export function LoginPage({
               </div>
             )}
 
+            {successMessage && (
+              <div
+                role="status"
+                className="flex items-start gap-2.5 p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900 text-sm"
+              >
+                <CheckCircle2 className="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" aria-hidden="true" />
+                <span>{successMessage}</span>
+              </div>
+            )}
+
             {errorMessage && (
               <div
                 role="alert"
@@ -258,9 +290,24 @@ export function LoginPage({
                 </button>
               </div>
               {needsAdminSetup && (
-                <p className="mt-1.5 text-[11px] text-slate-500">
-                  Wajib minimal 10 karakter dengan huruf besar, huruf kecil, serta angka atau simbol.
-                </p>
+                <ul className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-1 text-[11px] text-slate-600">
+                  <li className={`flex items-center gap-1.5 ${pwdHasMinLen ? 'text-emerald-700 font-medium' : ''}`}>
+                    <CheckCircle2 className={`w-3.5 h-3.5 ${pwdHasMinLen ? 'text-emerald-700' : 'text-slate-300'}`} />
+                    <span>Minimal 10 karakter</span>
+                  </li>
+                  <li className={`flex items-center gap-1.5 ${pwdHasUpper ? 'text-emerald-700 font-medium' : ''}`}>
+                    <CheckCircle2 className={`w-3.5 h-3.5 ${pwdHasUpper ? 'text-emerald-700' : 'text-slate-300'}`} />
+                    <span>Huruf besar (A–Z)</span>
+                  </li>
+                  <li className={`flex items-center gap-1.5 ${pwdHasLower ? 'text-emerald-700 font-medium' : ''}`}>
+                    <CheckCircle2 className={`w-3.5 h-3.5 ${pwdHasLower ? 'text-emerald-700' : 'text-slate-300'}`} />
+                    <span>Huruf kecil (a–z)</span>
+                  </li>
+                  <li className={`flex items-center gap-1.5 ${pwdHasDigitOrSymbol ? 'text-emerald-700 font-medium' : ''}`}>
+                    <CheckCircle2 className={`w-3.5 h-3.5 ${pwdHasDigitOrSymbol ? 'text-emerald-700' : 'text-slate-300'}`} />
+                    <span>Angka atau simbol</span>
+                  </li>
+                </ul>
               )}
             </div>
 
@@ -279,6 +326,11 @@ export function LoginPage({
                   placeholder="Ulangi password Admin"
                   className="w-full min-h-[44px] px-3.5 py-2.5 text-sm text-slate-900 bg-white border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-700/20 focus:border-emerald-800 transition-colors"
                 />
+                {confirmPassword.length > 0 && (
+                  <p className={`mt-1 text-[11px] ${pwdMatchesConfirm ? 'text-emerald-700 font-medium' : 'text-red-600'}`}>
+                    {pwdMatchesConfirm ? 'Konfirmasi password cocok.' : 'Konfirmasi password belum cocok.'}
+                  </p>
+                )}
               </div>
             )}
 
